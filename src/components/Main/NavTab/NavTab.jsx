@@ -9,7 +9,7 @@ function NavTab() {
     <ul className="navtab">
 
       <li className="navtab__button">
-        <a href="/#about" className="navtab__button button">О проекте</a>
+        <a href="/#project" className="navtab__button button">О проекте</a>
       </li>
       <li className="navtab__button">
         <a href="/#techs" className="navtab__button button">Технологии</a>

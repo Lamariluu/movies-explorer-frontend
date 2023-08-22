@@ -1,5 +1,7 @@
 .searchform {
     padding: 66px 70px 53px 70px;
+    margin: 0 auto;
+    max-width: 1140px;
 }
 
 .searchform__bar {

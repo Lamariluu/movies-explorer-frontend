@@ -14,15 +14,17 @@ const App = () => {
 
   return (
     <div className="app">
-      <Routes>
-        <Route path="/" element={<Main isLogged={isLogged} />} />
-        <Route path="/movies" element={<Movies isLogged={isLogged} />} />
-        <Route path="/saved-movies" element={<SavedMovies isLogged={isLogged} />} />
-        <Route path="/profile" element={<Profile isLogged={isLogged} />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
+      <div className="app__container">
+        <Routes>
+          <Route path="/" element={<Main isLogged={isLogged} />} />
+          <Route path="/movies" element={<Movies isLogged={isLogged} />} />
+          <Route path="/saved-movies" element={<SavedMovies isLogged={isLogged} />} />
+          <Route path="/profile" element={<Profile isLogged={isLogged} />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </div>
     </div>
   );
 };

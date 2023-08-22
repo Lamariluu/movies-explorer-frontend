@@ -74,7 +74,7 @@
     border-radius: 3px;
     width: 100%;
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: 19px;
     padding: 13px 0 15px 0;
 }
 
@@ -109,6 +109,7 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 6px;
+    margin-bottom: -18px;
 }
 
 @media screen and (max-width: 768px) {
@@ -137,7 +138,7 @@
     }
 
     .login__inputs-container {
-        margin-bottom: 309px;
+        margin-bottom: 312px;
     }
 
     .login__button {
