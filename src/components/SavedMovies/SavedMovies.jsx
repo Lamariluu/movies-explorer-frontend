@@ -1,7 +1,7 @@
 import React from "react";
 import "./SavedMovies.css";
 import Footer from "../Footer/Footer";
-import SearchForm from "../Movies/SearchForm/SearchForm";
+import SearchForm from "../SearchForm/SearchForm";
 import HeaderAuth from "../HeaderAuth/HeaderAuth";
 import { Link } from "react-router-dom";
 import pic1 from "../../images/pic1.png";

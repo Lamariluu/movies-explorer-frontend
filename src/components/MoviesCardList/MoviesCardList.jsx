@@ -1,17 +1,17 @@
 import React from "react";
 import "./MoviesCardList.css";
-import pic1 from "../../../images/pic1.png";
-import pic2 from "../../../images/pic2.png";
-import pic3 from "../../../images/pic3.png";
-import pic4 from "../../../images/pic4.png";
-import pic5 from "../../../images/pic5.png";
-import pic6 from "../../../images/pic6.png";
-import pic7 from "../../../images/pic7.png";
-import pic8 from "../../../images/pic8.png";
-import pic9 from "../../../images/pic9.png";
-import pic10 from "../../../images/pic10.png";
-import pic11 from "../../../images/pic11.png";
-import pic12 from "../../../images/pic12.png";
+import pic1 from "../../images/pic1.png";
+import pic2 from "../../images/pic2.png";
+import pic3 from "../../images/pic3.png";
+import pic4 from "../../images/pic4.png";
+import pic5 from "../../images/pic5.png";
+import pic6 from "../../images/pic6.png";
+import pic7 from "../../images/pic7.png";
+import pic8 from "../../images/pic8.png";
+import pic9 from "../../images/pic9.png";
+import pic10 from "../../images/pic10.png";
+import pic11 from "../../images/pic11.png";
+import pic12 from "../../images/pic12.png";
 import { Link } from "react-router-dom";
 
 const movies = [
