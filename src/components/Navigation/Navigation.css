@@ -139,7 +139,7 @@
 @media screen and (max-width: 320px) {
     .navigation {
         padding: 144px 10px 48px 10px;
-        padding-right: auto;
+        /*padding-right: auto;*/
         width: 100%;
         height: 100%;
         justify-content: center;

@@ -20,10 +20,10 @@ function Header() {
         <Link className="header__logo elements" to="/" />
 
         <div className="header__button-container">
-          <button className="header__button-signup link" onClick={handleSignupClick}>
+          <button type="button" className="header__button-signup link" onClick={handleSignupClick}>
             Регистрация
           </button>
-          <button className="header__button-signing buttonGreen" onClick={handleSigninClick}>
+          <button type="button" className="header__button-signing buttonGreen" onClick={handleSigninClick}>
             Войти
           </button>
         </div>

@@ -31,21 +31,42 @@ const movies = [
 
 function MoviesCardList() {
   return (
-    <section className="movieCardList">
-      {movies.map((movie, index) => (
-        <ul className="movie" key={index}>
-          <li className="movie__container">
-            <h3 className="movie__title">{movie.title}</h3>
-            <button type="button" className="movie__like-active elements"></button>
+    <section className="movieList">
+      <ul className="movieCardList">
+        {movies.map((movie, index) => (
+          <li className="movie" key={index}>
+            <div className="movie__container">
+              <h3 className="movie__title">{movie.title}</h3>
+              <button type="button" className="movie__like-active elements"></button>
+            </div>
+            <div className="movie__duration">{movie.duration}</div>
+            <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
+              <img className="movie__poster poster" src={movie.img} alt={`фильм ${movie.title}`} />
+            </Link>
           </li>
-          <li className="movie__duration">{movie.duration}</li>
-          <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
-            <img className="movie__poster poster" src={movie.img} alt={`фильм ${movie.title}`} />
-          </Link>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </section>
   );
 }
 
 export default MoviesCardList;
+
+//function MoviesCardList() {
+//  return (
+//    <section className="movieCardList">
+//      {movies.map((movie, index) => (
+//        <ul className="movie" key={index}>
+//          <li className="movie__container">
+//            <h3 className="movie__title">{movie.title}</h3>
+//            <button type="button" className="movie__like-active elements"></button>
+//          </li>
+//          <li className="movie__duration">{movie.duration}</li>
+//          <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
+//            <img className="movie__poster poster" src={movie.img} alt={`фильм ${movie.title}`} />
+//          </Link>
+//        </ul>
+//      ))}
+//    </section>
+//  );
+//}

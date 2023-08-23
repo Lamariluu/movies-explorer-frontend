@@ -20,24 +20,54 @@ function SavedMovies() {
       <HeaderAuth />
       <main className="main-container">
         <SearchForm />
-        <section className="saveMovieCardList">
-      {savedMovies.map((saveMovie, index) => (
-        <ul className="saveMovie" key={index}>
-          <li className="saveMovie__container">
-            <h3 className="saveMovie__caption">{saveMovie.title}</h3>
-            <button type="button" className="saveMovie__like elements"></button>
-          </li>
-          <li className="saveMovie__duration">{saveMovie.duration}</li>
-          <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
-            <img className="saveMovie__poster poster" src={saveMovie.img} alt={`фильм ${saveMovie.title}`} />
-          </Link>
-        </ul>
-      ))}
-    </section>
-    </main>
+        <section className="saveMovieList">
+          <ul className="saveMovieCardList">
+            {savedMovies.map((saveMovie, index) => (
+              <li className="saveMovie" key={index}>
+                <div className="saveMovie__container">
+                  <h2 className="saveMovie__caption">{saveMovie.title}</h2>
+                  <button type="button" className="saveMovie__like elements"></button>
+                </div>
+                <div className="saveMovie__duration">{saveMovie.duration}</div>
+                <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
+                  <img className="saveMovie__poster poster" src={saveMovie.img} alt={`фильм ${saveMovie.title}`} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
       <Footer />
     </>
   );
 }
 
 export default SavedMovies;
+
+//function SavedMovies() {
+//  return (
+//    <>
+//      <HeaderAuth />
+//      <main className="main-container">
+//        <SearchForm />
+//        <section className="saveMovieCardList">
+//      {savedMovies.map((saveMovie, index) => (
+//        <ul className="saveMovie" key={index}>
+//          <li className="saveMovie__container">
+//            <h3 className="saveMovie__caption">{saveMovie.title}</h3>
+//            <button type="button" className="saveMovie__like elements"></button>
+//          </li>
+//          <li className="saveMovie__duration">{saveMovie.duration}</li>
+//          <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
+//            <img className="saveMovie__poster poster" src={saveMovie.img} alt={`фильм ${saveMovie.title}`} />
+//          </Link>
+//        </ul>
+//      ))}
+//    </section>
+//    </main>
+//      <Footer />
+//    </>
+//  );
+//}
+
+//export default SavedMovies;
