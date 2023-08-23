@@ -27,6 +27,15 @@
     padding: 25px 0 25px 20px;
     outline: 0;
     margin-left: 5px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.searchform__input:focus {
+    background-color: #252525;
+    color: #fff;
+    border-radius: 6px;
+    margin-right: 5px;
 }
 
 .searchform__button {

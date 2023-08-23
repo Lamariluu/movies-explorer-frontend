@@ -87,8 +87,13 @@
     width: 100%;
     border: none;
     align-items: center;
-    outline: 0;
+    outline: none;
     background-color: #202020;
+    transition: transform 0.3s;
+}
+
+.profile__input:focus {
+    transform: translateX(-20px);
 }
 
 .profile__input:first-child {
