@@ -12,13 +12,14 @@
 
 .saveMovie {
     width: 364px;
-    flex-shrink: 0;
+    /*flex-shrink: 0;*/
     border-radius: 6px;
     background: #222;
     box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     list-style-type: none;
+    /*overflow: hidden;*/
 }
 
 .saveMovie__container {
@@ -42,7 +43,6 @@
 .saveMovie__caption {
     color: #fff;
     font-size: 15px;
-
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -90,22 +90,30 @@
     margin: 0 0 14px 14px;
     padding: 0;
 }
-
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1279px) {
     .saveMovieCardList {
-        grid-template-columns: 1fr 1fr;
-        padding: 70px 30px 176px 30px;
-        justify-items: center;
+        grid-column-gap: 10px;
+        max-width: 1140px;
     }
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 1255px) {
     .saveMovieCardList {
+        grid-template-columns: 1fr 1fr;
+        padding: 70px 70px 176px 70px;
+        /*justify-items: center;*/
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .saveMovieCardList {
+        max-width: 708px;
+        padding: 62px 0 174px 0;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 30px;
         grid-row-gap: 31px;
-        padding-top: 62px;
-        padding-bottom: 174px;
+        /*padding-top: 62px;
+        padding-bottom: 174px;*/
     }
 
     .saveMovie:nth-child(n + 9):nth-child(-n + 12) {
@@ -115,8 +123,9 @@
         width: 339px;
         height: 190px;
     }
+
     .saveMovie {
-        width: 339px;
+        max-width: 339px;
         flex-shrink: 0;
     }
 }

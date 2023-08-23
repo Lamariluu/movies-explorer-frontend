@@ -11,12 +11,12 @@ function Navigation({ isOpenBurger }) {
       </Link>
       <nav className="navigation__list">
         <li>
-          <NavLink to="/movies" className="navigation__link link" activeClassName="active">
+          <NavLink to="/movies" className="navigation__link link" activeclassname="active">
             Фильмы
           </NavLink>
         </li>
         <li>
-          <NavLink to="/saved-movies" className="navigation__link link" activeClassName="active">
+          <NavLink to="/saved-movies" className="navigation__link link" activeclassname="active">
             Сохранённые фильмы
           </NavLink>
         </li>

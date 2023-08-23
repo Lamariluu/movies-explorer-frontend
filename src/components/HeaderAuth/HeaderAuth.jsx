@@ -21,7 +21,7 @@ function HeaderAuth() {
         {isBurgerOpen && <div className="header-auth__overlay header__overlay_active" />}
         <button type="button" className="header-auth__burger" onClick={handleToggleBurger}>
           <div className={`header-auth__content ${isBurgerOpen ? "header__burger-active" : ""}`}>
-            <div className="header-auth__burger-icon" />
+            <div className="header-auth__burger-icon poster" />
           </div>
         </button>
 

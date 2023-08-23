@@ -6,4 +6,5 @@ body {
 	font-family: 'Inter', Arial, sans-serif;
 	background-color: #202020;
 	outline: 1px solid red;
+	max-width: 1280px;
 }
