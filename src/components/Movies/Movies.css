@@ -1,0 +1,29 @@
+.main__button-container {
+    width: 320px;
+    height: 36px;
+    flex-shrink: 0;
+    background-color: #2f2f2f;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 48px auto 80px auto;
+}
+
+.movies-button {
+    color: #fff;
+    background-color: #2f2f2f;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media screen and (max-width: 530px) {
+    .main__button-container {
+        width: 240px;
+        height: 36px;
+        margin-top: 50px;
+    }
+}
