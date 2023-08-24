@@ -31,19 +31,21 @@ const movies = [
 
 function MoviesCardList() {
   return (
-    <section className="movieCardList">
+    <section className="movieList">
+      <ul className="movieCardList">
       {movies.map((movie, index) => (
-        <ul className="movie" key={index}>
-          <li className="movie__container">
-            <h3 className="movie__title">{movie.title}</h3>
+        <li className="movie" key={index}>
+          <div className="movie__container">
+            <h2 className="movie__title">{movie.title}</h2>
             <button type="button" className="movie__like-active elements"></button>
-          </li>
-          <li className="movie__duration">{movie.duration}</li>
+          </div>
+          <div className="movie__duration">{movie.duration}</div>
           <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
             <img className="movie__poster poster" src={movie.img} alt={`фильм ${movie.title}`} />
           </Link>
-        </ul>
+        </li>
       ))}
+      </ul>
     </section>
   );
 }
