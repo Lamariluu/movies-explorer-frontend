@@ -16,7 +16,6 @@ function HeaderAuth() {
       <NavLink to="/">
         <img className="header-auth__logedin-logo elements" src={logo} alt="логотип" />
       </NavLink>
-
       <div>
         {isBurgerOpen && <div className="header-auth__overlay header__overlay_active" />}
         <button type="button" className="header-auth__burger" onClick={handleToggleBurger}>
@@ -24,7 +23,6 @@ function HeaderAuth() {
             <div className="header-auth__burger-icon poster" />
           </div>
         </button>
-
         <Navigation isOpenBurger={isBurgerOpen} />
       </div>
     </nav>

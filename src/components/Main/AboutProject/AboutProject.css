@@ -1,202 +1,202 @@
 .about-project {
-    margin: auto;
-    padding: 110px 70px 110px 70px;
+	margin: auto;
+	padding: 110px 70px 110px 70px;
 }
 
 .about-project__title {
-    /*display: flex;
-    flex-direction: column;*/
-    font-size: 22px;
-    letter-spacing: -0.88px;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 23px;
-    margin: 0;
-    border-bottom: 1px solid #DADADA;
-    color: #FFF;
+	/*display: flex;
+	flex-direction: column;*/
+	font-size: 22px;
+	letter-spacing: -0.88px;
+	font-weight: 400;
+	line-height: normal;
+	padding-bottom: 23px;
+	margin: 0;
+	border-bottom: 1px solid #DADADA;
+	color: #FFF;
 }
 
 .diploma {
-    display: flex;
-    gap: 40px;
-    margin-top: 70px;
+	display: flex;
+	gap: 40px;
+	margin-top: 70px;
 }
 
 .diploma-container {
-    max-width: 550px;
+	max-width: 550px;
 }
 
 .diploma-container__title {
-    color: #FFF;
-    font-size: 20px;
-    letter-spacing: -0.8px;
-    font-weight: 400;
-    line-height: normal;
-    margin: 0;
+	color: #FFF;
+	font-size: 20px;
+	letter-spacing: -0.8px;
+	font-weight: 400;
+	line-height: normal;
+	margin: 0;
 }
 
 .diploma-container__subtitle {
-    color: #FFF;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    margin-top: 26px;
-    margin-bottom: 0;
+	color: #FFF;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	margin-top: 26px;
+	margin-bottom: 0;
 }
 
 .diploma-phase {
-    display: flex;
-    align-items: center;
-    /*width: 100%;*/
-    margin-top: 110px;
+	display: flex;
+	align-items: center;
+	/*width: 100%;*/
+	margin-top: 110px;
 }
 
 .diploma-phase__backend {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 20%;
 }
 
 .diploma-phase__frontend {
-    width: 80%;
+	width: 80%;
 }
 
 .diploma-phase__time-back {
-    background-color: #2BE080;
-    margin: 0;
-    width: 100%;
-    padding: 9px 0px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: normal;
-    text-align: center;
-    color: #000;
+	background-color: #2BE080;
+	margin: 0;
+	width: 100%;
+	padding: 9px 0px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: normal;
+	text-align: center;
+	color: #000;
 }
 
 .diploma-phase__title {
-    color: #8B8B8B;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 17px;
-    margin: 14px 0 0 0;
+	color: #8B8B8B;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 17px;
+	margin: 14px 0 0 0;
 }
 
 .diploma-phase__time-front {
-    margin: 0;
-    padding: 9px 0px;
-    text-align: center;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: normal;
-    background-color: #303030;
-    color: #FFF;
+	margin: 0;
+	padding: 9px 0px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: normal;
+	background-color: #303030;
+	color: #FFF;
 }
 
 @media screen and (max-width: 800px) {
-    .about-project {
-        padding: 90px 50px;
-        max-width: 668px;
-    }
+	.about-project {
+			padding: 90px 50px;
+			max-width: 668px;
+	}
 
-    .diploma-container__subtitle {
-        font-size: 12px;
-        line-height: 18px;
-        margin-top: 22px;
-    }
+	.diploma-container__subtitle {
+			font-size: 12px;
+			line-height: 18px;
+			margin-top: 22px;
+	}
 
-    .diploma {
-        gap: 37px;
-    }
+	.diploma {
+			gap: 37px;
+	}
 
-    .diploma-phase {
-        margin-top: 93px;
-        /*margin-bottom: 31px;*/
-    }
+	.diploma-phase {
+			margin-top: 93px;
+			/*margin-bottom: 31px;*/
+	}
 
-    .diploma-phase__title {
-        color: #A0A0A0;
-        font-weight: 400;
-    }
-    .diploma-phase__backend {
-        width: 21%;
-    }
+	.diploma-phase__title {
+			color: #A0A0A0;
+			font-weight: 400;
+	}
+	.diploma-phase__backend {
+			width: 21%;
+	}
 }
 
 @media screen and (max-width: 530px) {
-    .about-project {
-        padding: 70px 18px 70px 18px;
-    }
+	.about-project {
+			padding: 70px 18px 70px 18px;
+	}
 
-    .about-project__title {
-        color: #FFF;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: -0.72px;
-        padding-bottom: 28px;
-    }
+	.about-project__title {
+			color: #FFF;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			letter-spacing: -0.72px;
+			padding-bottom: 28px;
+	}
 
-    .diploma-container__title {
-        color: #FFF;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: -0.72px;
-        margin-bottom: 0;
-        margin-top: 19px;
-    }
+	.diploma-container__title {
+			color: #FFF;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			letter-spacing: -0.72px;
+			margin-bottom: 0;
+			margin-top: 19px;
+	}
 
-    .diploma {
-        flex-direction: column;
-        margin-top: 44px;
-    }
+	.diploma {
+			flex-direction: column;
+			margin-top: 44px;
+	}
 
-    .diploma-container__subtitle {
-        color: #FFF;
-        font-size: 11px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 16px;
-        margin-top: 16px;
-    }
+	.diploma-container__subtitle {
+			color: #FFF;
+			font-size: 11px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 16px;
+			margin-top: 16px;
+	}
 
-    .diploma-phase__backend {
-        width: 43%;
-    }
+	.diploma-phase__backend {
+			width: 43%;
+	}
 
-    .diploma-phase {
-        margin-top: 60px;
-    }
+	.diploma-phase {
+			margin-top: 60px;
+	}
 
-    .diploma-phase__time-back {
-        font-size: 11px;
-        padding: 11px 0;
-    }
+	.diploma-phase__time-back {
+			font-size: 11px;
+			padding: 11px 0;
+	}
 
-    .diploma-phase__title {
-        font-size: 11px;
-        line-height: normal;
-        margin: 10px 0 0 0
-    }
+	.diploma-phase__title {
+			font-size: 11px;
+			line-height: normal;
+			margin: 10px 0 0 0
+	}
 
-    .diploma-phase__time-front {
-        font-size: 11px;
-        padding: 11px 0px;
-    }
+	.diploma-phase__time-front {
+			font-size: 11px;
+			padding: 11px 0px;
+	}
 
-    .diploma-phase__time-front {
-        margin: 0;
-        padding: 11px 0px;
-        text-align: center;
-        font-weight: 400;
-        font-size: 11px;
-        line-height: normal;
-        background: #303030;
-    }
+	.diploma-phase__time-front {
+			margin: 0;
+			padding: 11px 0px;
+			text-align: center;
+			font-weight: 400;
+			font-size: 11px;
+			line-height: normal;
+			background: #303030;
+	}
 }
 
 

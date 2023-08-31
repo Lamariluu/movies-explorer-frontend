@@ -1,85 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import HeaderAuth from "../HeaderAuth/HeaderAuth";
-import { useNavigate } from "react-router-dom";
+import CurrentUserContext from '../../context/CurrentUserContext';
+import useForm from '../../utils/hooks/useForm';
 
-function Profile() {
-  const [isUpdate, setIsUpdate] = useState(false);
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [nameTouched, setNameTouched] = useState(false);
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = useState("Введите имя");
-  const [emailErrorMessage, setEmailErrorMessage] = useState("Введите email");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("Введите пароль");
-  const [isInputValid, setIsInputValid] = useState(false);
+const Profile = ({ onSignOut, onUpdateUser, isLogged, isLoading }) => {
+  const currentUser = useContext(CurrentUserContext);
+  const { values, errors, handleChange, isFormValid, resetForm } = useForm();
+  const [isCurrentValues, setIsCurrentValues] = useState(false);
 
-  const handleProfileUpdate = () => {
-    console.log("")
-  }
-
-  const handleExitClick = () => {
-    navigate("/")
-  }
-
-  const handleNameChange = (evt) => {
-    handleBlur(evt)
-    setName(evt.target.value)
-    const pattern = /^[A-Za-zА-Яа-яЁё /s -]{4,}/
-    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
-      setNameErrorMessage("Неккоректное имя")
-    } else {
-      setNameErrorMessage("")
+  useEffect(() => {
+    if (currentUser) {
+      resetForm(currentUser);
     }
-  }
+  }, [currentUser, resetForm]);
 
-  const handleEmailChange = (evt) => {
-    handleBlur(evt)
-    setEmail(evt.target.value)
-    const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
-    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
-      setEmailErrorMessage("Неккоректный email")
-    } else {
-      setEmailErrorMessage("")
-    }
-  }
-
-  const handleBlur = ({ target: { name } }) => {
-    if (name === "name") {
-      setNameTouched(true);
-    } else if (name === "email") {
-      setEmailTouched(true);
-    } else if (name === "password") {
-      setPasswordTouched(true);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onUpdateUser({
+      name: values.name,
+      email: values.email,
+    });
   };
+
+  useEffect(() => {
+    setIsCurrentValues(currentUser.name === values.name);
+  }, [currentUser.name, values.name]);
 
   return (
     <>
-      <HeaderAuth />
+      <HeaderAuth isLogged={isLogged} />
       <main className="profile">
         <section className="profile__container">
-          <h1 className="profile__title">Привет, Мария!</h1>
-          <form className="profile__form">
+          <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+          <form className="profile__form" onSubmit={handleSubmit} noValidate>
             <div className="profile__inputs-container">
               <div className="profile__label-container">
                 <label className="profile__name">Имя</label>
                 <input
                   className="profile__input"
+                  name="name"
                   type="text"
-                  placeholder="Мария"
                   required={true}
-                  value={name}
+                  value={values.name || ''}
                   minLength={4}
                   maxLength={30}
-                  pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
-                  onChange={(evt) => handleNameChange(evt)}
+                  //pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
+                  onChange={handleChange}
                 />
               </div>
-              {(nameTouched && nameErrorMessage) && <div className="profile__input-label_error">{nameErrorMessage}</div>}
+              <span className="profile__input-label_error">{errors.name}</span>
               <div className="profile__line"></div>
               <div className="profile__label-container">
                 <label className="profile__email">E-mail</label>
@@ -87,21 +57,31 @@ function Profile() {
                   className="profile__input"
                   type="email"
                   name="email"
-                  value={email}
-                  placeholder="pochta@yandex.ru"
+                  value={values.email || ''}
+                  placeholder={currentUser.email}
                   pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,30}$"
                   required={true}
                   minLength={2}
                   maxLength={30}
-                  onChange={(evt) => handleEmailChange(evt)} />
+                  onChange={handleChange}
+                />
               </div>
-              {(emailTouched && emailErrorMessage) && <div className="profile__input-label_error">{emailErrorMessage}</div>}
+              <span className="profile__input-label_error">{errors.email}</span>
             </div>
             <div className="profile__navigate">
-              <button className="profile__button-edit link" type="button" onClick={() => handleProfileUpdate(name, email)}
-                disabled={!isUpdate}>Редактировать
+              <button
+                type="submit"
+                disabled={!isFormValid || isLoading}
+                className={!isFormValid || isLoading || isCurrentValues ? 'profile__button-edit_disabled' : 'profile__button-edit link'}
+              >
+                Редактировать
               </button>
-              <button type="button" onClick={handleExitClick} className="profile__button-text link">Выйти из аккаунта
+              <button
+                type="button"
+                onClick={onSignOut}
+                className="profile__button-text link"
+              >
+                Выйти из аккаунта
               </button>
             </div>
           </form>

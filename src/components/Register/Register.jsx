@@ -1,69 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import useForm from '../../utils/hooks/useForm';
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import "../Hover/Hover.css";
 
-function Register() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [nameTouched, setNameTouched] = useState(false)
-  const [emailTouched, setEmailTouched] = useState(false)
-  const [passwordTouched, setPasswordTouched] = useState(false)
-  const [nameErrorMessage, setNameErrorMessage] = useState('Введите имя')
-  const [emailErrorMessage, setEmailErrorMessage] = useState('Введите email')
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('Введите пароль')
-  const [isInputValid, setIsInputValid] = useState(false)
+const Register = ({ onRegister, isLoading }) => {
+  const { values, errors, handleChange, isFormValid } = useForm();
 
-  const handleNameChange = (evt) => {
-    handleBlur(evt)
-    setName(evt.target.value)
-    const pattern = /^[A-Za-zА-Яа-яЁё /s -]{2,}/
-    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
-      setNameErrorMessage("Неккоректное имя")
-    } else {
-      setNameErrorMessage("")
-    }
-  }
-
-  const handleEmailChange = (evt) => {
-    handleBlur(evt)
-    setEmail(evt.target.value)
-    const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
-    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
-      setEmailErrorMessage("Неккоректный email")
-    } else {
-      setEmailErrorMessage("")
-    }
-  }
-
-  const handlePasswordChange = (evt) => {
-    handleBlur(evt)
-    setPassword(evt.target.value)
-    if (evt.target.value.length < 4 || evt.target.value.length > 8) {
-      setPasswordErrorMessage("Что-то пошло не так...")
-      if (!evt.target.value) {
-        setPasswordErrorMessage("Пароль не может быть пустым")
-      }
-    } else {
-      setPasswordErrorMessage("")
-    }
-  }
-
-  const handleBlur = ({ target: { name } }) => {
-    if (name === "name") {
-      setNameTouched(true);
-    } else if (name === "email") {
-      setEmailTouched(true);
-    } else if (name === "password") {
-      setPasswordTouched(true);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onRegister(values.name, values.email, values.password);
   };
-
-  useEffect(() => {
-    setIsInputValid(!(nameErrorMessage || emailErrorMessage || passwordErrorMessage));
-  }, [nameErrorMessage, emailErrorMessage, passwordErrorMessage]);
 
   return (
     <main className="register">
@@ -74,27 +22,27 @@ function Register() {
           </Link>
         </div>
         <h1 className="register__title">Добро пожаловать!</h1>
-        <form className="register__form" noValidate name="register-form" onSubmit={(evt) => evt.preventDefault()}>
+        <form className="register__form" noValidate name="register" onSubmit={handleSubmit}>
           <div className="register__inputs-container">
             <div>
               <label className="register__label">Имя</label>
               <input
-                className="register__input"
+                className={`register__input ${errors.name ? 'register__error' : ''}`}
                 type="text"
                 name="name"
                 placeholder="Введите имя"
                 minLength={4}
                 maxLength={30}
-                pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
+                //pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
                 required={true}
-                value={name}
-                onChange={(evt) => handleNameChange(evt)} />
+                value={values.name || ''}
+                onChange={handleChange} />
             </div>
-            {(nameTouched && nameErrorMessage) && <div className="register__error">{nameErrorMessage}</div>}
+            {errors.name && <span className="register__error">{errors.name}</span>}
             <div>
               <label className="register__label">E-mail</label>
               <input
-                className="register__input"
+                className={`register__input ${errors.email ? 'register__error' : ''}`}
                 type="email"
                 name="email"
                 placeholder="Введите email"
@@ -102,27 +50,27 @@ function Register() {
                 required={true}
                 minLength={2}
                 maxLength={30}
-                value={email}
-                onChange={(evt) => handleEmailChange(evt)} />
+                value={values.email || ''}
+                onChange={handleChange} />
             </div>
-            {(emailTouched && emailErrorMessage) && <div className="register__error">{emailErrorMessage}</div>}
+            {errors.email && <span className="register__error">{errors.email}</span>}
             <div>
               <label className="register__label" >Пароль</label>
               <input
-                className="register__input"
+                className={`register__input ${errors.password ? 'register__error' : ''}`}
                 type="password"
                 name="password"
                 placeholder="Введите пароль"
                 minLength={4}
                 maxLength={8}
                 required={true}
-                value={password}
-                onChange={(evt) => handlePasswordChange(evt)} />
+                value={values.password || ''}
+                onChange={handleChange} />
             </div>
-            {(passwordTouched && passwordErrorMessage) && <div className="register__error">{passwordErrorMessage}</div>}
+            {errors.password && <span className="register__error">{errors.password}</span>}
           </div>
           <div className="register__button-container">
-            <button className="register__button buttonBlue" type="submit" disabled={!isInputValid}>
+            <button className="register__button buttonBlue" type="submit" disabled={!isFormValid || isLoading}>
               Зарегистрироваться
             </button>
             <Link className="register__link" to="/signin">

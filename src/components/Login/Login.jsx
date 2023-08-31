@@ -1,53 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import useForm from '../../utils/hooks/useForm';
 import "./Login.css";
 import logo from "../../images/logo.svg";
 import "../Hover/Hover.css";
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState('Введите email');
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('Введите пароль');
-  const [isInputValid, setIsInputValid] = useState(false);
+const Login = ({ onAuthorize, isLoading }) => {
+  const { values, errors, handleChange, isFormValid } = useForm();
 
-  const handleEmailChange = (evt) => {
-    handleBlur(evt);
-    setEmail(evt.target.value);
-    const pattern = /^\w+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
-      setEmailErrorMessage("Некорректный email");
-    } else {
-      setEmailErrorMessage("");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAuthorize(values['login-email'], values['login-password']);
   };
-
-  const handlePasswordChange = (evt) => {
-    handleBlur(evt);
-    setPassword(evt.target.value);
-    if (evt.target.value.length < 4 || evt.target.value.length > 8) {
-      setPasswordErrorMessage("Что-то пошло не так...");
-      if (!evt.target.value) {
-        setPasswordErrorMessage("Пароль не может быть пустым");
-      }
-    } else {
-      setPasswordErrorMessage("");
-    }
-  };
-
-  const handleBlur = ({ target: { name } }) => {
-    if (name === "email") {
-      setEmailTouched(true);
-    } else if (name === "password") {
-      setPasswordTouched(true);
-    }
-  };  
-
-  useEffect(() => {
-    setIsInputValid(!(emailErrorMessage || passwordErrorMessage));
-  }, [emailErrorMessage, passwordErrorMessage]);
 
   return (
     <main className="login">
@@ -58,44 +22,44 @@ function Login() {
           </Link>
         </div>
         <h1 className="login__title">Рады видеть!</h1>
-        <form noValidate name="login__form" className="login__form" onSubmit={(evt) => evt.preventDefault()}>
+        <form noValidate name="login" className="login__form" onSubmit={handleSubmit}>
           <div className="login__inputs-container">
             <div>
               <label className="login__label">E-mail</label>
               <input
-                className="login__input"
+                className={`login__input ${errors['login-email'] ? 'login__error' : ''}`}
                 type="email"
-                name="email"
+                name="login-email"
                 autoComplete="off"
                 placeholder="Введите email"
                 minLength={2}
                 maxLength={30}
                 pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,30}$"
                 required={true}
-                value={email}
-                onChange={(evt) => handleEmailChange(evt)}
+                value={values['login-email'] || ''}
+                onChange={handleChange}
               />
-              {emailTouched && emailErrorMessage && <div className="login__error">{emailErrorMessage}</div>}
+              {errors['login-email'] && <span className="login__error">{errors['login-email']}</span>}
             </div>
             <div>
               <label className="login__label">Пароль</label>
               <input
-                className="login__input"
+                className={`login__input ${errors['login-password'] ? 'login__error' : ''}`}
                 type="password"
-                name="password"
+                name="login-password"
                 autoComplete="off"
                 placeholder="Введите пароль"
                 minLength={4}
                 maxLength={8}
                 required={true}
-                value={password}
-                onChange={(evt) => handlePasswordChange(evt)}
+                value={values['login-password'] || ''}
+                onChange={handleChange}
               />
-              {passwordTouched && passwordErrorMessage && <div className="login__error">{passwordErrorMessage}</div>}
+              {errors['login-password'] && <span className="login__error">{errors['login-password']}</span>}
             </div>
           </div>
           <div className="login__button-container">
-            <button className="login__button buttonBlue" type="button" disabled={!isInputValid}>
+            <button className="login__button buttonBlue" type="submit" disabled={!isFormValid || isLoading}>
               Войти
             </button>
             <Link className="login__link" to="/signup">

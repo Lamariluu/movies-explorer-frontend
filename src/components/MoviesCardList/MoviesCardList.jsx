@@ -1,52 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./MoviesCardList.css";
-import pic1 from "../../images/pic1.png";
-import pic2 from "../../images/pic2.png";
-import pic3 from "../../images/pic3.png";
-import pic4 from "../../images/pic4.png";
-import pic5 from "../../images/pic5.png";
-import pic6 from "../../images/pic6.png";
-import pic7 from "../../images/pic7.png";
-import pic8 from "../../images/pic8.png";
-import pic9 from "../../images/pic9.png";
-import pic10 from "../../images/pic10.png";
-import pic11 from "../../images/pic11.png";
-import pic12 from "../../images/pic12.png";
-import { Link } from "react-router-dom";
+import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
+import { MOVIES_QUANTITY_PC, MOVIES_QUANTITY_TABLET, MOVIES_QUANTITY_MOBILE, MOVIES_QUANTITY_SMALL, MOVIES_ADD_TABLET, MOVIES_ADD_MOBILE } from '../../utils/constants';
 
-const movies = [
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic1 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic2 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic3 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic4 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic5 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic6 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic7 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic8 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic9 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic10 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic11 },
-  { title: "33 слова о дизайне", duration: "1ч 47м", img: pic12 },
-];
+const MoviesCardList = ({ savedMovies, cards, isSavedMovies, isLoading, isRequestError, isNotFound, onSaved, onUnsaved }) => {
+  const [visibleMovies, setVisibleMovies] = useState(0);
 
-function MoviesCardList() {
+  const visibleQuantity = () => {
+    const width = window.innerWidth;
+    if (width > 1174) {
+      return MOVIES_QUANTITY_PC;
+    } else if (width > 1023) {
+      return MOVIES_QUANTITY_TABLET;
+    } else if (width > 760) {
+      return MOVIES_QUANTITY_MOBILE;
+    } else if (width <= 760) {
+      return MOVIES_QUANTITY_SMALL;
+    }
+  };
+
+  useEffect(() => {
+    setVisibleMovies(visibleQuantity());
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleMovies(visibleQuantity());
+    };
+
+    const handleResizeWithDelay = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResize, 500);
+    };
+
+    let resizeTimeout;
+    window.addEventListener('resize', handleResizeWithDelay);
+
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', handleResizeWithDelay);
+    };
+  }, []);
+
+  const showMore = () => {
+    const width = window.innerWidth;
+    if (width > 1250) {
+      setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + MOVIES_ADD_TABLET);
+    } else if (width > 760) {
+      setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + MOVIES_ADD_MOBILE);
+    } else if (width <= 760) {
+      setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + MOVIES_ADD_MOBILE);
+    }
+  };
+
+  const getCard = (card) => {
+    return savedMovies.find((savedMovie) => savedMovie.movieId === card.id);
+  };
+
   return (
-    <section className="movieList">
-      <ul className="movieCardList">
-      {movies.map((movie, index) => (
-        <li className="movie" key={index}>
-          <div className="movie__container">
-            <h2 className="movie__title">{movie.title}</h2>
-            <button type="button" className="movie__like-active elements"></button>
-          </div>
-          <div className="movie__duration">{movie.duration}</div>
-          <Link to="https://www.youtube.com/@kinopoisk" target="_blank">
-            <img className="movie__poster poster" src={movie.img} alt={`фильм ${movie.title}`} />
-          </Link>
-        </li>
-      ))}
-      </ul>
-    </section>
+    <>
+      {isLoading && <Preloader />}
+      {isNotFound && !isLoading && <p className="nothing"> Ничего не найдено</p>}
+      {isRequestError && !isLoading && (
+        <>
+          Во время отправки запроса возникла ошибка. Вероятно, это связано с проблемами в соединении или сервере, который сейчас недоступен. Пожалуйста, подождите некоторое время и попробуйте повторить запрос позднее.
+        </>
+      )}
+      {!isLoading && !isRequestError && !isNotFound && (
+        <>
+          <ul className="movieCardList">
+            {cards.slice(0, visibleMovies).map((card) => (
+              <MoviesCard
+                key={isSavedMovies ? card._id : card.id}
+                saved={getCard(card)}
+                card={card}
+                isSavedMovies={isSavedMovies}
+                onSaved={onSaved}
+                onUnsaved={onUnsaved}
+                savedMovies={savedMovies}
+              />
+            ))}
+          </ul>
+          {cards.length > visibleMovies && (
+            <div type="button" className="main__button-container elements" onClick={showMore}>
+              <button className="movies-button">
+                Ещё
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 }
 
