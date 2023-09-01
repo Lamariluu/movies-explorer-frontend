@@ -1,0 +1,73 @@
+.movieCardList {
+	background-color: #202020;
+	padding: 70px 0 30px 0;
+	display: grid;
+	margin: 0 auto;
+	max-width: 1140px;
+	grid-template-columns: 1fr 1fr 1fr;
+	/*grid-template-columns: repeat(3, minmax(min-content, max-content));*/
+	grid-column-gap: 24px;
+	grid-row-gap: 25px;
+	/*position: absolute;*/
+}
+
+.nothing {
+	margin: 0 auto;
+	padding-left: 70px;
+	padding-top: 10px;
+	align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+	.movieCardList {
+			/*grid-template-columns: 1fr 1fr;
+			padding: 70px 0 30px 0;
+			justify-items: center;*/
+			grid-column-gap: 10px;
+			max-width: 1140px;
+	}
+}
+
+@media screen and (max-width: 1250px) {
+	.movieCardList {
+			grid-template-columns: 1fr 1fr;
+			padding: 70px 70px 30px 70px;
+			/*justify-items: center;*/
+			/*max-width: 364px;
+			margin: 0;*/
+	}
+}
+
+@media screen and (max-width: 830px) {
+	.movieCardList {
+			max-width: 708px;
+			padding: 70px 0 30px 0;
+			grid-column-gap: 30px;
+			grid-row-gap: 30px;
+			/*margin: 0 30px;*/
+	}
+	.nothing {
+			padding-left: 30px;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.movieCardList {
+			grid-template-columns: 1fr;
+			gap: 16px;
+			justify-content: center;
+			padding: 40px 10px 16px 10px;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.movieCardList {
+			padding-bottom: 30px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.nothing {
+			padding-left: 16px;
+	}
+}
