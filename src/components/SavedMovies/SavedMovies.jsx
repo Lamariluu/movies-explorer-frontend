@@ -47,7 +47,8 @@ const SavedMovies = ({ isLogged, savedMovies, onUnsaved, isLoading, isRequestErr
           <section className="saveMovieList">
             <ul className="saveMovieCardList">
               {filteredMovies.map((saveMovie, index) => (
-                <li className="saveMovie" key={index}>
+                <li className="saveMovie" key={saveMovie._id}>
+                  {/*{console.log(saveMovie)}*/}
                   <div className="saveMovie__container">
                     <h2 className="saveMovie__caption">{saveMovie.nameRU}</h2>
                     <button type="button" className="saveMovie__like elements" onClick={() => onUnsaved(saveMovie)}></button>

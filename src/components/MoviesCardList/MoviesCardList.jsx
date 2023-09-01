@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
-import { MOVIES_QUANTITY_PC, MOVIES_QUANTITY_TABLET, MOVIES_QUANTITY_MOBILE, MOVIES_QUANTITY_SMALL, MOVIES_ADD_TABLET, MOVIES_ADD_MOBILE } from '../../utils/constants';
+import { MOVIES_QUANTITY_PC, MOVIES_QUANTITY_MOBILE, MOVIES_QUANTITY_SMALL, MOVIES_ADD_TABLET, MOVIES_ADD_MOBILE } from '../../utils/constants';
 
 const MoviesCardList = ({ savedMovies, cards, isSavedMovies, isLoading, isRequestError, isNotFound, onSaved, onUnsaved }) => {
   const [visibleMovies, setVisibleMovies] = useState(0);
 
   const visibleQuantity = () => {
     const width = window.innerWidth;
-    if (width > 1174) {
+    if (width > 1250) {
       return MOVIES_QUANTITY_PC;
-    } else if (width > 1023) {
-      return MOVIES_QUANTITY_TABLET;
+    //} else if (width > 1250) {
+    //  return MOVIES_QUANTITY_TABLET;
     } else if (width > 760) {
       return MOVIES_QUANTITY_MOBILE;
     } else if (width <= 760) {
@@ -22,7 +22,7 @@ const MoviesCardList = ({ savedMovies, cards, isSavedMovies, isLoading, isReques
 
   useEffect(() => {
     setVisibleMovies(visibleQuantity());
-  }, []);
+  }, [cards]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,6 +50,7 @@ const MoviesCardList = ({ savedMovies, cards, isSavedMovies, isLoading, isReques
     } else if (width > 760) {
       setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + MOVIES_ADD_MOBILE);
     } else if (width <= 760) {
+      console.log(visibleMovies, cards)
       setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + MOVIES_ADD_MOBILE);
     }
   };
@@ -61,7 +62,7 @@ const MoviesCardList = ({ savedMovies, cards, isSavedMovies, isLoading, isReques
   return (
     <>
       {isLoading && <Preloader />}
-      {isNotFound && !isLoading && <p className="nothing"> Ничего не найдено</p>}
+      {isNotFound && <p className="nothing"> Ничего не найдено</p>}
       {isRequestError && !isLoading && (
         <>
           Во время отправки запроса возникла ошибка. Вероятно, это связано с проблемами в соединении или сервере, который сейчас недоступен. Пожалуйста, подождите некоторое время и попробуйте повторить запрос позднее.
