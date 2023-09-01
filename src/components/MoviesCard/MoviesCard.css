@@ -80,9 +80,9 @@
 }
 
 @media screen and (max-width: 830px) {
-	.movie:nth-child(n + 9):nth-child(-n + 12) {
+	/*.movie:nth-child(n + 9):nth-child(-n + 12) {
 			display: none;
-	}
+	}*/
 
 	.movie__poster {
 			width: 339px;
@@ -124,9 +124,9 @@
 			margin: 19px 0 14px 0;
 	}
 
-	.movie:nth-child(n + 6):nth-child(-n + 8) {
+	/*.movie:nth-child(n + 6):nth-child(-n + 8) {
 			display: none;
-	}
+	}*/
 }
 
 @media screen and (max-width: 530px) {

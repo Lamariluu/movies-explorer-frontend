@@ -27,12 +27,16 @@ const Movies = ({ isLogged, savedMovies, onUnsaved, onSaved }) => {
   const handleShortFilms = () => {
     setIsShortFilms(!isShortFilms);
     if (!isShortFilms) {
-      setFilteredMovies(filterShortFilms(initialMovies));
+      if (filterShortFilms(initialMovies).length === 0) {
+        setFilteredMovies(filterShortFilms(initialMovies));
+      } else {
+        setFilteredMovies(filterShortFilms(initialMovies));
+      }
     } else {
       setFilteredMovies(initialMovies);
     }
     localStorage.setItem('shorts', !isShortFilms);
-  }
+  };
 
   const onSearch = (query) => {
     localStorage.setItem('query', query);
@@ -70,12 +74,24 @@ const Movies = ({ isLogged, savedMovies, onUnsaved, onSaved }) => {
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
       setInitialMovies(movies);
-      setFilteredMovies(isShortFilms ? filterShortFilms(movies) : movies);
+      if (localStorage.getItem('shorts') === 'true') {
+        setFilteredMovies(filterShortFilms(movies));
+      } else {
+        setFilteredMovies(movies);
+      }
     }
   }, []);
 
   useEffect(() => {
-    setIsNotFound(filteredMovies.length === 0);
+    if (localStorage.getItem('query')) {
+      if (filteredMovies.length === 0) {
+        setIsNotFound(true);
+      } else {
+        setIsNotFound(false);
+      }
+    } else {
+      setIsNotFound(false);
+    }
   }, [filteredMovies]);
 
   return (

@@ -39,7 +39,7 @@ const SearchForm = ({ onSearch, onCheckbox, isShortFilms }) => {
             onChange={handleChange}
             className="searchform__input"
             type="text"
-            required
+            //required
             placeholder="Фильм"
           //pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
           />
